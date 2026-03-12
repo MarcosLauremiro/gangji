@@ -84,15 +84,14 @@ export default function Players() {
                     
                     {/* Header */}
                     <View className="mb-8">
-                        <View className="flex-row items-center">
+                        <View className="flex-row items-centerv justify-center">
                             <Text className="text-4xl font-black text-white italic">JOGADORES</Text>
                             <View className="ml-2 h-2 w-2 rounded-full bg-[#E33379]" />
                         </View>
-                        <Text className="text-gray-500 font-medium mt-1">
-                            Deck selecionado: <Text style={{ color: dack?.color }}>{dack?.name}</Text>
+                        <Text className="text-gray-500 font-medium mt-1 text-center">
+                            Jogo selecionado: <Text style={{ color: dack?.color }}>{dack?.name}</Text>
                         </Text>
                     </View>
-
                     {/* Input Area Estilizada */}
                     <View className="flex-row mb-8 items-center bg-[#1c1c1e] rounded-[20px] p-2 border border-white/5">
                         <TextInput
@@ -175,7 +174,6 @@ export default function Players() {
                                     ${players.length < 2 ? 'text-gray-600' : 'text-white'}`}>
                                     PRONTO
                                 </Text>
-                                {players.length >= 2 && <Text className="text-2xl">🔥</Text>}
                             </View>
                         </TouchableOpacity>
                         {players.length < 2 && (

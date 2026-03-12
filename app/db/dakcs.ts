@@ -376,6 +376,153 @@ export const dacks: IDack[] = [
                 dose: "3",
                 points: 3
             },
+            {
+                id: "c3",
+                name: "Dança provocante",
+                desafio: "Fazer uma lap dance (dança no colo) para alguém da roda",
+                dose: "3",
+                points: 6
+            },
+            {
+                id: "c4",
+                name: "Professor(a) sexy",
+                desafio: "Dar uma aula de educação sexual de uma maneira muito sexy",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c5",
+                name: "Massagista",
+                desafio: "Massagear alguém da roda",
+                dose: "1",
+                points: 4
+            },
+            {
+                id: "c6",
+                name: "Sem as mãos",
+                desafio: "Faça uma massagem nas costas de alguém sem usar as mãos",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c7",
+                name: "Habilidade secreta",
+                desafio: "Tirar o sutiã sem tirar a camiseta",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c8",
+                name: "Uma mão só",
+                desafio: "Desabotoar o sutiã de alguém usando só uma mão",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c9",
+                name: "Boca ágil",
+                desafio: "Tirar a camiseta de alguém usando a boca",
+                dose: "3",
+                points: 6
+            },
+            {
+                id: "c10",
+                name: "Segredo ao ouvido",
+                desafio: "Sussurrar uma frase sensual no ouvido de alguém",
+                dose: "1",
+                points: 4
+            },
+            {
+                id: "c11",
+                name: "Beijo na orelha",
+                desafio: "Beijar a orelha de alguém da roda",
+                dose: "1",
+                points: 4
+            },
+            {
+                id: "c12",
+                name: "Rodada do cafuné",
+                desafio: "Uma rodada fazendo cafuné em alguém da roda",
+                dose: "1",
+                points: 3
+            },
+            {
+                id: "c13",
+                name: "Confissão quente",
+                desafio: "Sussurre no ouvido de alguém as coisas que você costuma dizer na hora do sexo",
+                dose: "3",
+                points: 6
+            },
+            {
+                id: "c14",
+                name: "Mordida leve",
+                desafio: "Morder (de leve) o pescoço de alguém da roda",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c15",
+                name: "Adivinhação",
+                desafio: "Com os olhos fechados, encoste a mão em alguém da roda e adivinhe qual é a parte do corpo",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c16",
+                name: "Trono da rodada",
+                desafio: "Passar a próxima rodada no colo de alguém",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c17",
+                name: "Beijo liberado",
+                desafio: "Com o consentimento, beije alguém da roda",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c18",
+                name: "Show particular",
+                desafio: "Simular um strip tease tirando uma peça de roupa",
+                dose: "3",
+                points: 7
+            },
+            {
+                id: "c19",
+                name: "Beijo gelado",
+                desafio: "Coloque um cubo de gelo na boca e dê um beijo no pescoço de alguém da roda",
+                dose: "3",
+                points: 6
+            },
+            {
+                id: "c20",
+                name: "Mensagem quente",
+                desafio: "Mande uma mensagem de voz sexy para seu crush",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c21",
+                name: "Prova de coragem",
+                desafio: "Lamber alguma parte do corpo de outra pessoa",
+                dose: "3",
+                points: 7
+            },
+            {
+                id: "c22",
+                name: "Quem foi?",
+                desafio: "Feche os olhos, alguém da roda te dá um beijo, você precisa adivinhar quem é",
+                dose: "2",
+                points: 5
+            },
+            {
+                id: "c23",
+                name: "Figurinha provocante",
+                desafio: "Envie um figurinha sexy para seu crush",
+                dose: "1",
+                points: 4
+            }
         ]
     },
     {
@@ -391,6 +538,12 @@ export const dacks: IDack[] = [
                 desafio: "Vá até uma mesa vizinha (ou pessoa próxima) e peça um autógrafo dizendo que confundiu com uma celebridade.",
                 dose: "3",
                 points: 5
+            },{
+                id: "c2",
+                name: "O cantor de bar",
+                desafio: "Cante uma musica em voz alta e chame a galera pra cantar junto",
+                dose: "3",
+                points: 6
             },]
     },
     {

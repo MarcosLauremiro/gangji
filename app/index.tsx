@@ -1,7 +1,5 @@
-import { Redirect, useRouter } from "expo-router";
-import { Text, View, Image, StatusBar, Platform, TouchableOpacity, Dimensions } from "react-native";
-import Login from "./components/Login";
-import { useAuth } from "./context/AuthContext";
+import { useRouter } from "expo-router";
+import { Image, Platform, StatusBar, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
   const androidGap = Platform.OS === "android" ? StatusBar.currentHeight : 0;
@@ -23,25 +21,25 @@ export default function Index() {
   return (
     <View className="flex-1 bg-[#0a0a0c]">
       <StatusBar barStyle="light-content" />
-      
+
       {/* Background Decorativo (Círculos de luz) */}
-      <View 
-        className="absolute top-[-50] right-[-50] w-64 h-64 rounded-full bg-[#E33379] opacity-20" 
+      <View
+        className="absolute top-[-50] right-[-50] w-64 h-64 rounded-full bg-[#E33379] opacity-20"
       />
 
       <View className="flex-1 px-8 justify-center items-center">
-        
+
         {/* Container da Imagem com Brilho */}
-        <View 
+        <View
           className="items-center justify-center mb-10"
           style={{ paddingTop: androidGap }}
         >
-            <View className="absolute w-40 h-40 bg-[#E33379] opacity-10 rounded-full blur-3xl" />
-            <Image
-                source={require("./assets/images/gangji.png")}
-                className="w-80 h-48"
-                resizeMode="contain"
-            />
+          <View className="absolute w-40 h-40 bg-[#E33379] opacity-10 rounded-full blur-3xl" />
+          <Image
+            source={require("./assets/images/gangji.png")}
+            className="w-80 h-48"
+            resizeMode="contain"
+          />
         </View>
       </View>
       {/* Footer / Botão */}
@@ -54,17 +52,14 @@ export default function Index() {
         >
           <View className="flex-row items-center">
             <Text className="text-white text-xl font-black tracking-widest italic mr-2">
-                BORA JOGAR
+              JOGAR
             </Text>
-            <Text className="text-2xl">🔥</Text>
           </View>
         </TouchableOpacity>
-        
-        <Text className="text-gray-600 text-center mt-4 text-xs font-bold uppercase tracking-widest">
-            Beba com moderação • +18
+        <Text className="text-gray-400 text-center mt-4 text-xs font-bold uppercase tracking-widest">
+          Beta teste V 0.1
         </Text>
       </View>
-
     </View>
   );
 }

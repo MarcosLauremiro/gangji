@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StatusBar, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, ScrollView, StatusBar, Switch, Text, TouchableOpacity, View } from 'react-native';
 import { ScreenView } from '../../../components/screenView';
 import { dacks } from '../../../db/dakcs';
 
@@ -43,10 +43,12 @@ export default function GameScreen() {
         let earnedPoints = 0;
         if (isDrinkMode) {
             if (challengeDone && doseDone) earnedPoints = (currentCard?.points || 0) * 2;
-            else if (challengeDone || doseDone) earnedPoints = 1;
+            else if (challengeDone || doseDone) earnedPoints = currentCard?.points;
         } else {
-            if (challengeDone) earnedPoints = currentCard?.points || 1;
+            if (challengeDone) earnedPoints = currentCard?.points;
         }
+
+
 
         const updatedPlayers = [...gamePlayers];
         updatedPlayers[currentPlayerIndex].score += earnedPoints;
@@ -101,6 +103,12 @@ export default function GameScreen() {
                     >
                         <Text className="text-white font-black text-lg uppercase italic tracking-widest">NOVO JOGO</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => Linking.openURL("https://tally.so/r/obBZlM")}
+                        className="mt-4 bg-[#fff] w-full py-5 rounded-[25px] items-center shadow-2xl shadow-[#E33379]/40"
+                    >
+                        <Text className="text-black font-black text-lg uppercase italic tracking-widest">Dar feedback</Text>
+                    </TouchableOpacity>
                 </View>
             </ScreenView>
         );
@@ -140,7 +148,7 @@ export default function GameScreen() {
                         <Text className="text-white font-black text-2xl uppercase italic">Rodada {currentCardIndex + 1}/{originalDeck?.cards.length}</Text>
                     </View>
                     <View style={{ backgroundColor: currentPlayer.color }} className="px-4 py-1.5 rounded-full shadow-lg shadow-black">
-                        <Text className="text-black font-black text-[10px] uppercase italic">Ativo</Text>
+                        <Text className="text-black font-black text-[10px] uppercase italic">Jogando</Text>
                     </View>
                 </View>
 
@@ -156,7 +164,7 @@ export default function GameScreen() {
                         shadowRadius: 20,
                         elevation: 10
                     }}
-                    className="rounded-[45px] p-10 min-h-[300px] items-center justify-between overflow-hidden"
+                    className="rounded-[46px] p-8 min-h-[300px] items-center justify-between overflow-hidden"
                 >
                     <Text className="text-gray-400 font-black uppercase tracking-[4px] text-[10px]">{currentCard?.name}</Text>
 
@@ -166,8 +174,8 @@ export default function GameScreen() {
 
                     <View className="w-full gap-4 flex-row justify-center items-center space-x-4">
                         <View className=" rounded-[20px] items-center">
-                            <Text className="text-gray-400 text-[9px] font-black uppercase mb-1">Valor</Text>
-                            <Text className="text-white font-black text-xl">⭐ {currentCard?.points}</Text>
+                            <Text className="text-gray-400 text-[9px] font-black uppercase mb-1">Pontos</Text>
+                            <Text className="text-white font-black text-xl">{currentCard?.points}</Text>
                         </View>
                     </View>
                 </View>
@@ -188,7 +196,7 @@ export default function GameScreen() {
                     {isDrinkMode && (
                         <View className="bg-[#161618] p-4 rounded-[30px] flex-row justify-between items-center border border-white/5">
                             <View>
-                                <Text className="text-white text-lg font-black uppercase italic">Tomar {currentCard?.dose} doses 🥃</Text>
+                                <Text className="text-white text-lg font-black uppercase italic">Tomar {currentCard?.dose} doses</Text>
                                 <Text className="text-[#E33379] text-xs font-black uppercase tracking-widest">Voce tambem pode beber</Text>
                             </View>
                             <Switch
@@ -211,7 +219,8 @@ export default function GameScreen() {
                         shadowRadius: 15,
                         elevation: 12
                     }}
-                    className="mt-10 h-20 rounded-[30px] items-center justify-center"
+                    className={`mt-10 h-20 rounded-[30px] items-center justify-center ${!(challengeDone || doseDone) ? 'opacity-50' : ''}`}
+                    disabled={!(challengeDone || doseDone)}
                 >
                     <Text className="text-black font-black text-xl uppercase italic tracking-[3px]">
                         {currentCardIndex === (originalDeck?.cards.length || 0) - 1 ? 'Finalizar Jogo' : 'Próximo Desafio'}

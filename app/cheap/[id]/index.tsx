@@ -34,19 +34,7 @@ export default function CheapDeck() {
                 
                 {/* Header do  Estilizado */}
                 <View className="items-center mb-10 mt-6">
-                    <View 
-                        style={{ 
-                            backgroundColor: dack.color,
-                            shadowColor: dack.color,
-                            shadowOffset: { width: 0, height: 10 },
-                            shadowOpacity: 0.5,
-                            shadowRadius: 20,
-                            elevation: 15
-                        }} 
-                        className="w-24 h-24 rounded-[30px] items-center justify-center mb-6"
-                    >
-                        <Text style={{ fontSize: 45 }}>🃏</Text>
-                    </View>
+                    <Text className="text-white text-4xl font-black italic uppercase tracking-tighter">Jogo</Text>
                     <View className="flex-row items-center">
                         <Text className="text-white text-4xl font-black italic uppercase tracking-tighter">
                             {dack.name}
@@ -60,17 +48,16 @@ export default function CheapDeck() {
 
                 {/* Card de Configuração */}
                 <View className="bg-[#161618] rounded-[35px] p-6 border border-white/5 mb-6 shadow-2xl">
-                    <Text className="text-gray-600 font-black uppercase tracking-[2px] text-[10px] mb-6">
+                    <Text className="text-gray-400 font-black uppercase tracking-[2px] text-[10px] mb-6">
                         Regras da Partida
                     </Text>
                     
                     <View className="flex-row justify-between items-center">
                         <View className="flex-1 pr-6">
                             <View className="flex-row items-center mb-1">
-                                <Text className="text-white text-lg font-black uppercase italic">Modo Bebida</Text>
-                                {withDrinks && <Text className="ml-2 text-xs">🥃</Text>}
+                                <Text className="text-white text-lg font-black uppercase italic">Com desfio de bebida?</Text>
                             </View>
-                            <Text className="text-gray-500 text-xs font-bold leading-4">
+                            <Text className="text-gray-400 text-[12px] font-bold leading-4">
                                 Ativa o modo com doses, juntos ao desafio
                             </Text>
                         </View>
@@ -86,7 +73,7 @@ export default function CheapDeck() {
                 {/* Lista de Jogadores (Preview) */}
                 <View className="bg-[#161618] rounded-[35px] p-6 border border-white/5 mb-8">
                     <View className="flex-row justify-between items-center mb-6">
-                        <Text className="text-gray-600 font-black uppercase tracking-[2px] text-[10px]">
+                        <Text className="text-gray-400 font-black uppercase tracking-[2px] text-[10px]">
                             Todos os jogadores  ({playerList.length})
                         </Text>
                     </View>
@@ -128,18 +115,17 @@ export default function CheapDeck() {
                 >
                     <View className="flex-row items-center">
                         <Text className="text-white font-black text-xl uppercase italic tracking-[4px] mr-3">
-                            Lançar o Caos
+                            Iniciar Jogo
                         </Text>
-                        <Text className="text-2xl">🔥</Text>
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
-                    onPress={() => router.back()}
+                    onPress={() => router.push('/cheap')}
                     className="py-4 items-center"
                 >
-                    <Text className="text-gray-600 font-bold uppercase tracking-widest text-[10px]">
-                        Ajustar jogo
+                    <Text className="text-gray-500 font-bold uppercase tracking-widest text-[10px]">
+                        Mudar jogo
                     </Text>
                 </TouchableOpacity>
 
