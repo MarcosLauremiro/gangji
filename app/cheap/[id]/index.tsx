@@ -55,10 +55,10 @@ export default function CheapDeck() {
                     <View className="flex-row justify-between items-center">
                         <View className="flex-1 pr-6">
                             <View className="flex-row items-center mb-1">
-                                <Text className="text-white text-lg font-black uppercase italic">Com desfio de bebida?</Text>
+                                <Text className="text-white text-lg font-black uppercase italic">Com desafio de bebida?</Text>
                             </View>
                             <Text className="text-gray-400 text-[12px] font-bold leading-4">
-                                Ativa o modo com doses, juntos ao desafio
+                                Ativa o modo de beber dose ou comprir desafio
                             </Text>
                         </View>
                         <Switch 

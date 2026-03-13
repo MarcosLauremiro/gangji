@@ -181,21 +181,21 @@ export const dacks: IDack[] = [
             {
                 id: "c21",
                 name: "Galeria russa",
-                desafio: "Mostrar para o grupo as seis últimas fotos da galeria do celular",
+                desafio: "Mostrar para o grupo as seis últimas fotos da galeria do celular.",
                 dose: "3",
                 points: 5
             },
             {
                 id: "c22",
                 name: "Galeria russa",
-                desafio: "Andar pela c num pé só;",
+                desafio: "Andar pelando com num pé só.",
                 dose: "3",
                 points: 5
             },
             {
                 id: "c23",
-                name: "Galeria russa",
-                desafio: "Andar pela c num pé só;",
+                name: "O midia",
+                desafio: "Tirar uma foto com os jogadores e postar marcando o @gangji",
                 dose: "3",
                 points: 5
             },
@@ -365,7 +365,7 @@ export const dacks: IDack[] = [
             {
                 id: "c1",
                 name: "Recaida",
-                desafio: "Ligar para o ex ou para a ex e dizer “Oi, sumido(a)”;",
+                desafio: "Ligar para o ex ou para a ex e dizer “Oi, sumido(a)”",
                 dose: "3",
                 points: 5
             },

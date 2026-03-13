@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Linking, ScrollView, StatusBar, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { ScreenView } from '../../../components/screenView';
 import { dacks } from '../../../db/dakcs';
 
@@ -107,7 +107,7 @@ export default function GameScreen() {
                         onPress={() => Linking.openURL("https://tally.so/r/obBZlM")}
                         className="mt-4 bg-[#fff] w-full py-5 rounded-[25px] items-center shadow-2xl shadow-[#E33379]/40"
                     >
-                        <Text className="text-black font-black text-lg uppercase italic tracking-widest">Dar feedback</Text>
+                        <Text className="text-black font-black text-md uppercase italic tracking-widest">Dar feedback</Text>
                     </TouchableOpacity>
                 </View>
             </ScreenView>
@@ -115,10 +115,10 @@ export default function GameScreen() {
     }
 
     return (
-        <ScreenView style={{ backgroundColor: "#0a0a0c" }}>
+        <ScreenView style={{ backgroundColor: "#0a0a0c", flex: 1 }}>
             <StatusBar barStyle="light-content" />
 
-            {/* Header Abas de Navegador */}
+            {/* Header Abas - Mantido */}
             <View className="flex-row px-2 pt-4 bg-[#0a0a0c]">
                 {gamePlayers.map((player: any, index: number) => {
                     const isActive = index === currentPlayerIndex;
@@ -127,110 +127,131 @@ export default function GameScreen() {
                             style={{
                                 borderTopLeftRadius: 15, borderTopRightRadius: 15,
                                 backgroundColor: isActive ? player.color : '#161618',
-                                height: isActive ? 58 : 48,
-                                marginTop: isActive ? 0 : 10,
+                                height: isActive ? 52 : 44,
+                                marginTop: isActive ? 0 : 8,
                                 justifyContent: 'center', alignItems: 'center',
                                 opacity: isActive ? 1 : 0.6,
-                                borderBottomWidth: isActive ? 0 : 1,
-                                borderBottomColor: '#0a0a0c'
                             }}>
-                            <Text className="font-black text-[9px] uppercase" style={{ color: isActive ? '#000' : '#666' }}>{player.name}</Text>
-                            <Text className="font-black text-[14px]" style={{ color: isActive ? '#000' : '#fff' }}>{player.score}</Text>
+                            <Text className="font-black text-[8px] uppercase" style={{ color: isActive ? '#000' : '#666' }}>{player.name}</Text>
+                            <Text className="font-black text-[12px]" style={{ color: isActive ? '#000' : '#fff' }}>{player.score}</Text>
                         </View>
                     );
                 })}
             </View>
 
-            <ScrollView contentContainerStyle={{ padding: 24 }}>
-                <View className="flex-row justify-between items-end mb-8 px-1">
+            {/* Container Principal Sem Rolagem */}
+            <View className="flex-1 px-6 py-4 justify-between">
+
+                {/* Info da Rodada */}
+                <View className="flex-row justify-between items-center mb-2">
                     <View>
-                        <Text className="text-gray-600 font-black uppercase text-[10px] tracking-[2px]">JOGO {originalDeck?.name}</Text>
-                        <Text className="text-white font-black text-2xl uppercase italic">Rodada {currentCardIndex + 1}/{originalDeck?.cards.length}</Text>
+                        <Text className="text-gray-600 font-black uppercase text-[9px] tracking-[2px]">{originalDeck?.name}</Text>
+                        <Text className="text-white font-black text-xl uppercase italic">Rodada {currentCardIndex + 1}/{originalDeck?.cards.length}</Text>
                     </View>
-                    <View style={{ backgroundColor: currentPlayer.color }} className="px-4 py-1.5 rounded-full shadow-lg shadow-black">
-                        <Text className="text-black font-black text-[10px] uppercase italic">Jogando</Text>
+                    <View style={{ backgroundColor: currentPlayer.color }} className="px-3 py-1 rounded-full">
+                        <Text className="text-black font-black text-[9px] uppercase italic">Sua Vez</Text>
                     </View>
                 </View>
 
-                {/* Card de Desafio Estilizado */}
+                {/* --- CARD DE JOGO (OCUPA O ESPAÇO DISPONÍVEL) --- */}
                 <View
                     style={{
-                        backgroundColor: '#161618',
-                        borderWidth: 2,
+                        backgroundColor: '#1c1c1e',
+                        borderWidth: 3,
                         borderColor: currentPlayer.color,
+                        borderRadius: 32,
+                        padding: 10,
                         shadowColor: currentPlayer.color,
                         shadowOffset: { width: 0, height: 10 },
                         shadowOpacity: 0.3,
                         shadowRadius: 20,
-                        elevation: 10
+                        elevation: 10,
+                        flex: 1, // Faz o card crescer
+                        marginVertical: 15
                     }}
-                    className="rounded-[46px] p-8 min-h-[300px] items-center justify-between overflow-hidden"
                 >
-                    <Text className="text-gray-400 font-black uppercase tracking-[4px] text-[10px]">{currentCard?.name}</Text>
-
-                    <Text className="text-white text-[18px] font-black text-center leading-[32px] uppercase italic tracking-tighter">
-                        {currentCard?.desafio}
-                    </Text>
-
-                    <View className="w-full gap-4 flex-row justify-center items-center space-x-4">
-                        <View className=" rounded-[20px] items-center">
-                            <Text className="text-gray-400 text-[9px] font-black uppercase mb-1">Pontos</Text>
-                            <Text className="text-white font-black text-xl">{currentCard?.points}</Text>
-                        </View>
-                    </View>
-                </View>
-
-                {/* Switches de Controle */}
-                <View className="mt-10 gap-2 space-y-4">
-                    <View className="bg-[#161618] p-4 rounded-[30px] flex-row justify-between items-center border border-white/5">
-                        <View>
-                            <Text className="text-white text-lg font-black uppercase italic">Desafio Feito</Text>
-                            <Text className="text-gray-500 text-xs font-medium">O jogador completou a tarefa?</Text>
-                        </View>
-                        <Switch
-                            value={challengeDone} onValueChange={setChallengeDone}
-                            trackColor={{ false: "#333", true: "#4ade80" }} thumbColor="#fff"
-                        />
-                    </View>
-
-                    {isDrinkMode && (
-                        <View className="bg-[#161618] p-4 rounded-[30px] flex-row justify-between items-center border border-white/5">
-                            <View>
-                                <Text className="text-white text-lg font-black uppercase italic">Tomar {currentCard?.dose} doses</Text>
-                                <Text className="text-[#E33379] text-xs font-black uppercase tracking-widest">Voce tambem pode beber</Text>
+                    <View
+                        style={{ borderColor: 'rgba(255,255,255,0.08)', borderWidth: 1 }}
+                        className="flex-1 rounded-[24px] p-6 items-center justify-between border-dashed"
+                    >
+                        <View className="items-center">
+                            <View style={{ backgroundColor: currentPlayer.color }} className="px-3 py-1 rounded-sm mb-2">
+                                <Text className="text-black font-black uppercase tracking-[2px] text-[10px]">
+                                    {currentCard?.name || 'DESAFIO'}
+                                </Text>
                             </View>
-                            <Switch
-                                value={doseDone} onValueChange={setDoseDone}
-                                trackColor={{ false: "#333", true: "#E33379" }} thumbColor="#fff"
-                            />
                         </View>
-                    )}
+
+                        <View className="w-full">
+                            <Text className="text-white text-[20px] font-black text-center leading-[30px] uppercase italic tracking-tight">
+                                "{currentCard?.desafio}"
+                            </Text>
+                        </View>
+
+                        <View className="w-full flex-row justify-between items-center">
+                            <View className="items-center justify-center h-12 w-12 rounded-full border-2 border-white/20 bg-[#0a0a0c]">
+                                <Text className="text-gray-400 text-[7px] font-black uppercase">PTS</Text>
+                                <Text className="text-white font-black text-lg">{currentCard?.points}</Text>
+                            </View>
+
+                            {isDrinkMode && (
+                                <View className="items-center justify-center px-4 h-10 rounded-xl border-2 border-[#E33379]/30 bg-[#0a0a0c]">
+                                    <Text className="text-[#E33379] font-black text-xs italic uppercase">+{currentCard?.dose} Doses</Text>
+                                </View>
+                            )}
+                        </View>
+                    </View>
                 </View>
 
-                {/* Botão Confirmar */}
-                <TouchableOpacity
-                    onPress={handleNextTurn}
-                    activeOpacity={0.9}
-                    style={{
-                        backgroundColor: currentPlayer.color,
-                        shadowColor: currentPlayer.color,
-                        shadowOffset: { width: 0, height: 8 },
-                        shadowOpacity: 0.4,
-                        shadowRadius: 15,
-                        elevation: 12
-                    }}
-                    className={`mt-10 h-20 rounded-[30px] items-center justify-center ${!(challengeDone || doseDone) ? 'opacity-50' : ''}`}
-                    disabled={!(challengeDone || doseDone)}
-                >
-                    <Text className="text-black font-black text-xl uppercase italic tracking-[3px]">
-                        {currentCardIndex === (originalDeck?.cards.length || 0) - 1 ? 'Finalizar Jogo' : 'Próximo Desafio'}
-                    </Text>
-                </TouchableOpacity>
+                {/* --- RODAPÉ (SWITCHES E BOTÃO) --- */}
+                <View>
+                    <View className="flex-row gap-2 mb-4">
+                        <TouchableOpacity
+                            onPress={() => setChallengeDone(!challengeDone)}
+                            style={{ backgroundColor: challengeDone ? '#4ade8020' : '#161618', borderColor: challengeDone ? '#4ade80' : 'transparent' }}
+                            className="flex-1 p-3 rounded-2xl border items-center justify-center h-16"
+                        >
+                            <Text className="text-white text-[10px] font-black uppercase opacity-60">Fez o desafio?</Text>
+                            <Text className={`font-black uppercase italic ${challengeDone ? 'text-[#4ade80]' : 'text-white'}`}>
+                                {challengeDone ? 'SIM' : 'NÃO'}
+                            </Text>
+                        </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => router.back()} className="mt-8 mb-10 self-center">
-                    <Text className="text-gray-700 font-black uppercase text-[10px] tracking-[3px]">Finalizar sessão</Text>
-                </TouchableOpacity>
-            </ScrollView>
+                        {isDrinkMode && (
+                            <TouchableOpacity
+                                onPress={() => setDoseDone(!doseDone)}
+                                style={{ backgroundColor: doseDone ? '#E3337920' : '#161618', borderColor: doseDone ? '#E33379' : 'transparent' }}
+                                className="flex-1 p-3 rounded-2xl border items-center justify-center h-16"
+                            >
+                                <Text className="text-white text-[10px] font-black uppercase opacity-60">Bebeu?</Text>
+                                <Text className={`font-black uppercase italic ${doseDone ? 'text-[#E33379]' : 'text-white'}`}>
+                                    {doseDone ? 'SIM' : 'NÃO'}
+                                </Text>
+                            </TouchableOpacity>
+                        )}
+                    </View>
+
+                    <TouchableOpacity
+                        onPress={handleNextTurn}
+                        activeOpacity={0.8}
+                        style={{
+                            backgroundColor: currentPlayer.color,
+                            opacity: !(challengeDone || doseDone) ? 0.4 : 1
+                        }}
+                        className="h-16 rounded-2xl items-center justify-center"
+                        disabled={!(challengeDone || doseDone)}
+                    >
+                        <Text className="text-black font-black text-lg uppercase italic tracking-[1px]">
+                            {currentCardIndex === (originalDeck?.cards.length || 0) - 1 ? 'Finalizar Jogo' : 'Próxima Carta'}
+                        </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => router.back()} className="py-4 self-center">
+                        <Text className="text-gray-700 font-black uppercase text-[9px] tracking-[2px]">Encerrar Sessão</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
         </ScreenView>
     );
 }
